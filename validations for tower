@@ -1,0 +1,99 @@
+// number implementation
+int main()
+{
+
+	std::cout << "Please enter a number of rings from 1 to 32" << endl;
+
+	int rings;
+	std::cin >> rings;
+
+	rings = toupper(rings);
+
+
+	while(rings <= -1 || rings > 32)
+	{
+
+
+		std::cout << "Error invalid input please try again " << std::endl;
+		std::cout << "Please enter a number between 1 and 32" << endl;
+		int rings;
+		std::cin >> rings;
+
+		while (rings > 1 && rings < 32)
+		{
+			return true;
+		}
+
+    }
+	
+	std::cout << "You entered " << rings << std::endl;
+
+	return 0;
+	
+	}
+  
+  
+  /*char validation to keep playing*/
+int main()
+{
+
+	std::cout << "Please enter [Y/N]: to play again " << endl;
+	
+	char YorN;
+	std::cin >> YorN;
+
+	YorN = toupper(YorN);
+	
+
+	if (YorN != 'Y' && YorN != 'y')
+	{
+		
+
+		std::cout << "Error invalid input please try again " << std::endl;
+		std::cout << "Please enter [Y/N]: ";
+		char YorN;
+		std::cin >> YorN;
+	}
+ if (YorN != 'N' && YorN != 'n')
+	{
+		
+	 return true;
+
+	}
+	
+	std::cout << "You entered " << YorN << std::endl;
+
+	return 0;
+}
+  
+  
+  
+  // quiting the game
+  int exitingProgram()
+{
+
+	std::cout << "Please enter [Q]: to quit ";
+	char quit;
+	std::cin >> quit;
+
+	quit = toupper(quit);
+
+	while (quit != 'Q' && quit != 'Q')
+	{
+		std::cout << "Error invalid input please try again " << std::endl;
+		std::cout << "Please enter [Q]: ";
+		std::cin >> quit;
+		quit = toupper(quit);
+	}
+
+
+	std::cout << "You entered " << quit << std::endl;
+
+
+	return 0;
+
+
+}
+
+
+  
