@@ -111,15 +111,175 @@ void veryfiyConditions(double realNumberC1, double realNumberC2, double imaginar
     }
 }
 
-void evaluateComplexNumbers()
+void evaluateComplexNumbers(double realNumberC1, double realNumberC2, double imaginaryNumberC1, double imaginaryNumberC2)
 {
+    double tempRealC1, tempRealC2, tempImaginaryC1, tempImaginaryC2;
+    tempRealC1 = realNumberC1;
+    tempRealC2 = realNumberC2;
+    tempImaginaryC1 = imaginaryNumberC1;
+    tempImaginaryC2 = imaginaryNumberC2;
+    cout << "Addition      : C1 + C2 -> (";
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") + (";
+    displayOnlyComplexnumber(tempRealC2, tempImaginaryC2);
+    cout << ") = ";
 
+    tempRealC1 = tempRealC1 + tempRealC2;
+    tempImaginaryC1 = tempImaginaryC1 + tempImaginaryC2;
+
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << endl;
+    tempRealC1 = realNumberC1;
+    tempRealC2 = realNumberC2;
+    tempImaginaryC1 = imaginaryNumberC1;
+    tempImaginaryC2 = imaginaryNumberC2;
+    cout << "Subtraction   : C1 - C2 -> (";
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") - (";
+    displayOnlyComplexnumber(tempRealC2, tempImaginaryC2);
+    cout << ") = ";
+
+    tempRealC1 = tempRealC1 - tempRealC2;
+    tempImaginaryC1 = tempImaginaryC1 - tempImaginaryC2;
+
+    
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << endl;
+    double temp1, temp2, temp3, temp4;
+    tempRealC1 = realNumberC1;
+    tempRealC2 = realNumberC2;
+    tempImaginaryC1 = imaginaryNumberC1;
+    tempImaginaryC2 = imaginaryNumberC2;
+    cout << "Multiplication: C1 * C2 -> (";
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") * (";
+    displayOnlyComplexnumber(tempRealC2, tempImaginaryC2);
+    cout << ") = ";
+
+    temp1 = tempRealC1 * tempRealC2;
+    temp2 = tempRealC1 * tempImaginaryC2;
+    temp3 = tempImaginaryC1 * tempRealC2;
+    temp4 = tempImaginaryC1 * tempImaginaryC2;
+
+    tempRealC1 = temp1 + (temp4 * -1);
+    tempImaginaryC1 = temp2 + temp3;
+
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+
+    cout << endl;
+    double a, b, c, d;
+    a = realNumberC1;
+    c = realNumberC2;
+    b = imaginaryNumberC1;
+    d = imaginaryNumberC2;
+    cout << "Division      : C1 / C2 -> (";
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") / (";
+    displayOnlyComplexnumber(tempRealC2, tempImaginaryC2);
+    cout << ") = ";
+
+    tempRealC1 = ((a*c) + (b*d))/((c*c)+(d*d));
+    tempImaginaryC1 = ((b * c) - (a * d)) / ((c * c) + (d * d));
+
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << endl;
 }
 
-void evaluateSteps()
+void evaluateSteps(double realNumberC1, double realNumberC2, double imaginaryNumberC1, double imaginaryNumberC2)
 {
+    double tempRealC1, tempRealC2, tempImaginaryC1, tempImaginaryC2;
+    tempRealC1 = realNumberC1;
+    tempRealC2 = realNumberC2;
+    tempImaginaryC1 = imaginaryNumberC1;
+    tempImaginaryC2 = imaginaryNumberC2;
+    displayComplexnumber(realNumberC1, imaginaryNumberC1);
+    displayComplexnumber(realNumberC2, imaginaryNumberC2);
+    displayComplexnumber(1.07109, 0.120832);
+    cout << endl;
 
+    cout << "\t(3 * (C1 + C2) / 7) / (C2 - C1 / 9) != (1.07109 + 0.120832i) ?" << endl;
+    cout << "Step 1: (3 * (";
+    tempRealC1 = tempRealC1 + tempRealC2;
+    tempImaginaryC1 = tempImaginaryC1 + tempImaginaryC2;
+
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+
+    cout << ") / 7) / (C2 - (";
+    tempRealC1 = realNumberC1;
+    tempRealC2 = realNumberC2;
+    tempImaginaryC1 = imaginaryNumberC1;
+    tempImaginaryC2 = imaginaryNumberC2;
+
+    tempRealC1 =  tempRealC1/9;
+    tempImaginaryC1 = tempImaginaryC1 / 9;
+
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ")) != (1.07109 + 0.120832i) ";
+
+    cout << endl;
+    //tempRealC2 = realNumberC1; 
+    //tempImaginaryC2 = imaginaryNumberC1;
+    tempRealC1 = (realNumberC1 + realNumberC2)*3;
+    tempImaginaryC1 = (imaginaryNumberC1 + imaginaryNumberC2)*3;
+
+    cout << "Step 2: ((";
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") / 7) / (";
+
+    tempRealC2 = realNumberC2;
+    tempImaginaryC2 = imaginaryNumberC2;
+
+    tempRealC1 = realNumberC1 / 9;
+    tempImaginaryC1 = imaginaryNumberC1 / 9;
+
+    tempRealC1 = tempRealC2 - tempRealC1;
+    tempImaginaryC1 = tempImaginaryC2 - tempImaginaryC1;
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") != (1.07109 + 0.120832i) " << endl;
+
+
+    tempRealC1 = ((realNumberC1 + realNumberC2) * 3)/7;
+    tempImaginaryC1 = ((imaginaryNumberC1 + imaginaryNumberC2) * 3)/7;
+    cout << "Step 3: (";
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") / (";
+
+    tempRealC2 = realNumberC2;
+    tempImaginaryC2 = imaginaryNumberC2;
+
+    tempRealC1 = realNumberC1 / 9;
+    tempImaginaryC1 = imaginaryNumberC1 / 9;
+
+    tempRealC1 = tempRealC2 - tempRealC1;
+    tempImaginaryC1 = tempImaginaryC2 - tempImaginaryC1;
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") != (1.07109 + 0.120832i) " << endl;
+
+    tempRealC1 = ((realNumberC1 + realNumberC2) * 3) / 7;
+    tempImaginaryC1 = ((imaginaryNumberC1 + imaginaryNumberC2) * 3) / 7;
+
+    tempRealC2 = realNumberC2-(realNumberC1/9);
+    tempImaginaryC2 = imaginaryNumberC2-(imaginaryNumberC1/9);
+
+    double a, b, c, d;
+    a = tempRealC1;
+    c = tempRealC2;
+    b = tempImaginaryC1;
+    d = tempImaginaryC2;
+
+    tempRealC1 = ((a * c) + (b * d)) / ((c * c) + (d * d));
+    tempImaginaryC1 = ((b * c) - (a * d)) / ((c * c) + (d * d));
+
+    cout << "Step 4: (";
+    displayOnlyComplexnumber(tempRealC1, tempImaginaryC1);
+    cout << ") != (1.07109 + 0.120832i) " << endl;
+
+    if (tempRealC1 != 1.07109 && tempImaginaryC1 != 120832)
+        cout << "Step 5: True";
+    else
+        cout << "Step 5: False";
 }
+
 
 void multipleComplexNumbers()
 {
@@ -133,8 +293,8 @@ void multipleComplexNumbers()
         case 1: inputComplexNumber(realNumberC1, imaginaryNumberC1); break;
         case 2: inputComplexNumber(realNumberC2, imaginaryNumberC2); break;
         case 3: veryfiyConditions(realNumberC1, realNumberC2, imaginaryNumberC1, imaginaryNumberC2); break;
-        case 4: evaluateComplexNumbers(); break;
-        case 5: evaluateSteps(); break;
+        case 4: evaluateComplexNumbers(realNumberC1, realNumberC2, imaginaryNumberC1, imaginaryNumberC2); break;
+        case 5: evaluateSteps(realNumberC1, realNumberC2, imaginaryNumberC1, imaginaryNumberC2); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
