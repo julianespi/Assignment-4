@@ -1,0 +1,286 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+
+
+class Polynomial {
+protected:
+	class Terms {
+	public:
+		int coefficient;
+		int exponent;
+
+		Terms* next;
+		Terms(int exp, int coef, Terms* n) {
+			exponent = exp;
+			coefficient = coef;
+			next = n;
+		}
+		friend class Polynomial;
+	};
+
+public:
+	Polynomial() {
+		term = new Terms(0, 0, nullptr);
+	}
+
+	Polynomial(const Polynomial& p) {
+		Terms* q;
+		Terms* terms = nullptr;
+		bool flag = true;
+		for (q = p.term; q != nullptr; q = q->next) {
+			if (flag) {
+				flag = false;
+				terms = new Terms(q->exponent, q->coefficient, nullptr);
+				term = terms;
+			}
+			else {
+				terms->exponent = q->exponent;
+				terms->coefficient = q->coefficient;
+			}
+			if (q->next != nullptr) {
+				terms->next = new Terms(0, 0, nullptr);
+				terms = terms->next;
+			}
+		}
+	}
+
+	~Polynomial() {
+		while (true) {
+			if (term->next == nullptr)
+				break;
+			Terms* p = term;
+			term = term->next;
+			delete p;
+		}
+		delete term;
+	}
+
+	Polynomial& operator=(const Polynomial& p) {
+		while (true) {
+			if (term->next == nullptr)
+				break;
+			Terms* pterm = term;
+			term = term->next;
+			delete pterm;
+		}
+		delete[] term;
+		Terms* q;
+		Terms* terms;
+		bool flag = true;
+		for (q = p.term; q != nullptr; q = q->next) {
+			if (flag) {
+				flag = false;
+				terms = new Terms(q->exponent, q->coefficient, nullptr);
+				term = terms;
+			}
+			else {
+				terms->exponent = q->exponent;
+				terms->coefficient = q->coefficient;
+			}
+			if (q->next != nullptr) {
+				terms->next = new Terms(0, 0, nullptr);
+				terms = terms->next;
+			}
+		}
+		return *this;
+	}
+
+	//Precondition:
+	//PostCondition:
+
+	void addTerm(int expon, int coeff) {
+		if (term->exponent == 0 && term->coefficient == 0) {
+			term->coefficient = coeff;
+			term->exponent = expon;
+		}
+		else {
+			Terms* q = nullptr;
+			Terms* p = term;
+			if (term->exponent < expon) {
+				q = new Terms(expon, coeff, nullptr);
+				q->next = term;
+				term = q;
+			}
+			else if (term->exponent == expon) {
+				term->coefficient += coeff;
+				if (term->coefficient == 0) {
+					if (term->next == nullptr)
+						term->exponent = 0;
+					else {
+						term = term->next;
+						delete p;
+					}
+				}
+			}
+			else {
+				bool flag = false;
+				while (true) {
+					if (p->next == nullptr)
+						break;
+					q = p->next;
+					if (q->exponent == expon) {
+						flag = true;
+						break;
+					}
+					if (q->exponent < expon)
+						break;
+					p = p->next;
+				}
+				if (flag) {
+					q->coefficient += coeff;
+					if (q->coefficient == 0) {
+						p->next = q->next;
+						delete q;
+					}
+				}
+				else {
+					q = new Terms(expon, coeff, nullptr);
+					q->next = p->next;
+					p->next = q;
+				}
+			}
+		}
+	}
+
+	//Precondition:NA
+	//PostCondition: Evaluating the polynomials
+
+	double evaluate(double x) {
+		double sum = 0;
+		double value;
+		Terms* p;
+		for (p = term; p != nullptr; p = p->next) {
+			value = pow(x, p->exponent);
+			sum += (p->coefficient * value);
+		}
+		return sum;
+	}
+
+	//Precondition: displaying the addition operater
+	//Postcondition: adds first and second polynomial
+
+	friend Polynomial operator+(const Polynomial& p, const Polynomial& q) {
+		Polynomial result;
+		Terms* terms_p, * terms_q;
+		for (terms_p = p.term; terms_p != nullptr; terms_p = terms_p->next)
+			result.addTerm(terms_p->exponent, terms_p->coefficient);
+		for (terms_q = q.term; terms_q != nullptr; terms_q = terms_q->next)
+			result.addTerm(terms_q->exponent, terms_q->coefficient);
+		return result;
+	}
+
+	//Precondition: displaying the subtraction operator
+	//Postcondition: subtracts first and second polynomial
+
+	friend Polynomial operator-(const Polynomial& p, const Polynomial& q) {
+		Polynomial result;
+		Terms* terms_p, * terms_q;
+		for (terms_p = p.term; terms_p != nullptr; terms_p = terms_p->next)
+			result.addTerm(terms_p->exponent, terms_p->coefficient);
+		for (terms_q = q.term; terms_q != nullptr; terms_q = terms_q->next)
+			result.addTerm(terms_q->exponent, -terms_q->coefficient);
+		return result;
+	}
+
+	//Precondition: displaying the multiplication operator
+	//Postcondition: multiplies first and second polynomial
+
+	friend Polynomial operator*(const Polynomial& p, const Polynomial& q) {
+		Polynomial result;
+		Terms* terms_p, * terms_q;
+		for (terms_p = p.term; terms_p != nullptr; terms_p = terms_p->next) {
+			for (terms_q = q.term; terms_q != nullptr; terms_q = terms_q->next) {
+				result.addTerm(terms_q->exponent + terms_p->exponent, terms_q->coefficient * terms_p->coefficient);
+			}
+		}
+		return result;
+	}
+
+
+
+	friend ostream& operator<<(ostream& display, const Polynomial& p) {
+		bool flag = true;
+		if (p.term->coefficient == 0)
+			display << "0";
+		else {
+			for (Terms* q = p.term; q != nullptr; q = q->next) {
+				if (flag) {
+					if (q->coefficient < 0)
+						display << "- ";
+				}
+				else {
+					if (q->coefficient > 0)
+						display << "+ ";
+					else if (q->coefficient < 0)
+						display << "- ";
+				}
+				if (q->coefficient == 0)
+					continue;
+				else if (abs(q->coefficient) == 1) {
+					if (q->exponent == 0)
+						display << abs(q->coefficient);
+				}
+				else display << abs(q->coefficient);
+				if (q->exponent == 0)
+					continue;
+				else if (q->exponent == 1)
+					display << "x";
+				else
+					display << "x^" << q->exponent;
+				if (q->next != nullptr)
+					display << " ";
+				flag = false;
+			}
+		}
+		return display;
+	}
+
+private:
+	Terms* term;
+};
+
+int main()
+{
+	cout << "Two Polynomials\n";
+
+
+	Polynomial PolynomialOne;
+  int TermNumberOne;
+	TermNumberOne = inputInteger("\nEnter number of terms for the first polynomial: ");
+
+	for (int i = 1; i <= TermNumberOne; i++) {
+		int TermsOne;
+		TermsOne = inputInteger("Add coeffecient for term #"<< i <<": ");
+		int TermOneDegree;
+		TermOneDegree = TermNumberOne - i;
+		PolynomialOne.addTerm(TermOneDegree, TermsOne);
+	}
+	cout << "\nFirst Polynomial is: " << PolynomialOne << "\n";
+
+	Polynomial PolynomialTwo;
+  int TermNumberTwo;
+	TermNumberTwo = inputInteger("\nEnter number of terms for the second polynomial: ");
+	
+	
+
+	for (int i = 1; i <= TermNumberTwo; i++) {
+		int TermsTwo;
+		TermsTwo = inputInteger("Add coeffecient for term #" << i << ": "); 
+		int TermTwoDegree;
+		TermTwoDegree = TermNumberTwo - i;
+		PolynomialTwo.addTerm(TermTwoDegree, TermsTwo);
+	}
+	cout << "\nSecond Polynomial is:  " << PolynomialTwo << "\n";
+
+	cout << "\n********************Calculations********************";
+	cout << "\nFirst Polynomial is: " << PolynomialOne << "\n";
+	cout << "\nSecond Polynomial is:  " << PolynomialTwo << "\n";
+	cout << "\nAddition: " << PolynomialOne + PolynomialTwo;
+	cout << "\nSubtraction: " << PolynomialOne - PolynomialTwo;
+	cout << "\nMultiplication: " << PolynomialOne * PolynomialTwo << "\n";
+	
+
+	
+}
