@@ -274,7 +274,7 @@ int main()
 		TermTwoDegree = TermNumberTwo - i;
 		PolynomialTwo.addTerm(TermTwoDegree, TermsTwo);
 	}
-	cout << "\nSecond Polynomial is:  " << PolynomialTwo << "\n";
+	cout << "\nSecond Polynomial is: " << PolynomialTwo << "\n";
 
 	cout << "\n********************Calculations********************";
 	cout << "\nFirst Polynomial is: " << PolynomialOne << "\n";
