@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include "input.h"
 using namespace std;
 
 
@@ -90,21 +91,21 @@ public:
 	//Precondition:
 	//PostCondition:
 
-	void addTerm(int expon, int coeff) {
+	void addTerm(int exponent, int coefficient) {
 		if (term->exponent == 0 && term->coefficient == 0) {
-			term->coefficient = coeff;
-			term->exponent = expon;
+			term->coefficient = coefficient;
+			term->exponent = exponent;
 		}
 		else {
 			Terms* q = nullptr;
 			Terms* p = term;
-			if (term->exponent < expon) {
-				q = new Terms(expon, coeff, nullptr);
+			if (term->exponent < exponent) {
+				q = new Terms(exponent, coefficient, nullptr);
 				q->next = term;
 				term = q;
 			}
-			else if (term->exponent == expon) {
-				term->coefficient += coeff;
+			else if (term->exponent == exponent) {
+				term->coefficient += coefficient;
 				if (term->coefficient == 0) {
 					if (term->next == nullptr)
 						term->exponent = 0;
@@ -120,23 +121,23 @@ public:
 					if (p->next == nullptr)
 						break;
 					q = p->next;
-					if (q->exponent == expon) {
+					if (q->exponent == exponent) {
 						flag = true;
 						break;
 					}
-					if (q->exponent < expon)
+					if (q->exponent < exponent)
 						break;
 					p = p->next;
 				}
 				if (flag) {
-					q->coefficient += coeff;
+					q->coefficient += coefficient;
 					if (q->coefficient == 0) {
 						p->next = q->next;
 						delete q;
 					}
 				}
 				else {
-					q = new Terms(expon, coeff, nullptr);
+					q = new Terms(exponent, coefficient, nullptr);
 					q->next = p->next;
 					p->next = q;
 				}
@@ -247,12 +248,14 @@ int main()
 
 
 	Polynomial PolynomialOne;
-  int TermNumberOne;
-	TermNumberOne = inputInteger("\nEnter number of terms for the first polynomial: ");
+	
+	//int TermNumberOne;
+	int TermNumberOne = inputInteger("\nEnter number of terms for the first polynomial: ", 1, 100);
 
 	for (int i = 1; i <= TermNumberOne; i++) {
-		int TermsOne;
-		TermsOne = inputInteger("Add coeffecient for term #"<< i <<": ");
+		//int TermsOne;
+		
+		int TermsOne = inputInteger("Add coeffecient for term: ");
 		int TermOneDegree;
 		TermOneDegree = TermNumberOne - i;
 		PolynomialOne.addTerm(TermOneDegree, TermsOne);
@@ -260,14 +263,12 @@ int main()
 	cout << "\nFirst Polynomial is: " << PolynomialOne << "\n";
 
 	Polynomial PolynomialTwo;
-  int TermNumberTwo;
-	TermNumberTwo = inputInteger("\nEnter number of terms for the second polynomial: ");
-	
-	
+	//int TermNumberTwo;
+	int TermNumberTwo = inputInteger("\nEnter number of terms for the second polynomial: ", 1, 100);
 
 	for (int i = 1; i <= TermNumberTwo; i++) {
-		int TermsTwo;
-		TermsTwo = inputInteger("Add coeffecient for term #" << i << ": "); 
+		//int TermsTwo;
+		int TermsTwo = inputInteger("Add coeffecient for term: ");
 		int TermTwoDegree;
 		TermTwoDegree = TermNumberTwo - i;
 		PolynomialTwo.addTerm(TermTwoDegree, TermsTwo);
