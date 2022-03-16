@@ -83,6 +83,8 @@ void Rational::normalize()
 	norm = gcd(numerator, denominator);
 	numerator = numerator / normalize;
 	denominator = denominator / norm;
+	return numerator;
+	return denominator;
 }
 
 bool operator !=(const Rational& R1, const Rational& R2)
