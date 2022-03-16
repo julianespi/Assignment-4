@@ -46,7 +46,7 @@ class Rational
 		friend Rational operator /(const int i, const Rational& R1);
 };
 
-int Rational::gcd(int x, int y) {
+/*int Rational::gcd(int x, int y) {
 	if (y == 0)
 	return x;
 	return gcd(y, x % y);
@@ -306,4 +306,4 @@ Rational::Rational(const Rational& R)
 {
 	numerator = R.numerator;
 	denominator = R.denominator;
-}
+}*/
