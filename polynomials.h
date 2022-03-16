@@ -39,7 +39,10 @@ void evaluateExpression()
 
 void Derive()
 {
-
+	Polynomial derived;
+	cout << onlyPolynomial << endl;
+	derived.derive(onlyPolynomial);
+	cout << derived << endl;
 }
 
 void intergrate()
