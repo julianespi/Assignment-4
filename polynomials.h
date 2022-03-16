@@ -19,12 +19,17 @@ int singlePolynomialMenuOption()
 
 void inputpolynomial()
 {
-
+int NumberOfTerms = inputInteger("Enter the number of terms you would like: ", 1, 100);
 }
 
 void changeCoefficients()
 {
+for (int i = 1; i <= NumberOfTerms; i++) {
 
+		int TermsOne = inputInteger("Add coeffecient for term: ");
+		int TermOneDegree;
+		TermOneDegree = NumberOfTerms - i;
+	}
 }
 
 void evaluateExpression()
