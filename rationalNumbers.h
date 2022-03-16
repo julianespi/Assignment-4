@@ -112,7 +112,7 @@ void inputRational()
 
 }
 
-void verifyConsition()
+void verifyCondition()
 {
 
 }
@@ -136,7 +136,7 @@ void mutlipleRationalNumbers()
         case 0: return; break;
         case 1: inputRational(); break;
         case 2: inputRational(); break;
-        case 3: verifyConsition(); break;
+        case 3: verifyCondition(); break;
         case 4: evaulateArithmatic(); break;
         case 5: evaluateRationalNumber(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
