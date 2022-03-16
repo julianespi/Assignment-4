@@ -87,7 +87,33 @@ public:
 		}
 		return *this;
 	}
+	
+	void derive(const Polynomial& p) {
+	
+		Terms* q;
+		Terms* terms = nullptr;
+		bool flag = true;
+		for (q = p.term; q != nullptr; q = q->next) {
+			if (flag) {
+				flag = false;
+				// this also does derivative but just incase, i dont realy know what this function does.
+				terms = new Terms(q->exponent-1, q->coefficient* q->exponent, nullptr);
+				term = terms;
+			}
+			else {
 
+				// the lines below handle deriatves.
+				terms->exponent = q->exponent;
+				terms->coefficient = q->coefficient * terms->exponent; 
+				terms->exponent = q->exponent-1;
+			}
+			if (q->next != nullptr) {
+				terms->next = new Terms(0, 0, nullptr);
+				terms = terms->next;
+			}
+		}
+	}
+	
 	//Precondition: takes data form user input 
 	//PostCondition: sets exponent and coefficient 
 	void addTerm(int exponent, int coefficient) {
