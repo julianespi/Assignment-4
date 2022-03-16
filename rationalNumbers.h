@@ -16,7 +16,7 @@ int singleRationalNumberMenuOption()
     cout << endl << "==========================================";
     cout << endl << "Exit 0";
     cout << endl << "==========================================" << endl;
-    int options = inputInteger("Options: ", 0, 2);
+    int options = inputInteger("Options: ", 0, 9);
     cout << endl << endl << endl;
     return options;
 }
@@ -102,7 +102,7 @@ int  mutlipleRationalNumbersMenuOption()
     cout << endl << "==========================================";
     cout << endl << "Exit 0";
     cout << endl << "==========================================" << endl;
-    int options = inputInteger("Options: ", 0, 2);
+    int options = inputInteger("Options: ", 0, 5);
     cout << endl << endl << endl;
     return options;
 }
