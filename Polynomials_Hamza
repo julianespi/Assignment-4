@@ -88,6 +88,8 @@ public:
 		return *this;
 	}
 
+	//Precondition: takes data form user input 
+	//PostCondition: sets exponent and coefficient 
 	void addTerm(int exponent, int coefficient) {
 		if (term->exponent == 0 && term->coefficient == 0) {
 			term->coefficient = coefficient;
