@@ -291,6 +291,6 @@ int main()
 	Polynomial PolyconstantTwo = constantvalue * PolynomialTwo;
 	
 
-	cout << "\nPoly One times constant: " << PolyconstantOne;
-	cout << "\nPoly Two times constant: " << PolyconstantTwo << "\n";
+	cout << "\nPolynomial One * " << constantvalue << " = " << PolyconstantOne;
+	cout << "\nPolynomial Two * "  << constantvalue << " = " << PolyconstantTwo << "\n";
 }
