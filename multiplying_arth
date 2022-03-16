@@ -1,0 +1,64 @@
+#include<iostream>
+#include<math.h>
+
+
+using namespace std;
+
+
+int multiplying(int(&value1)[100][2], int(&value2)[100][2], int(&value3)[1000][2], int num1, int num2)
+{
+    int a = 0;
+    for (int m = 0; m < num2; m++)
+    {
+        for (int n = 0; n < num1; n++, a++)
+        {
+            value3[a][0] = value1[n][0] * value2[m][0];
+            value3[a][1] = value1[n][1] + value2[m][1];
+        }
+    }
+    for (int m = 0; m < a; m++)
+    {
+        for (int n = m + 1; n < a; n++)
+        {
+            if (value3[m][1] == value3[n][1])
+            {
+                value3[m][0] += value3[n][0];
+                for (int l = n; l < a - 1; l++)
+                {
+                    value3[l][0] = value3[l + 1][0];
+                    value3[l][1] = value3[l + 1][1];
+                }
+                a--;
+            }
+        }
+    }
+    return a;
+}
+void printpolynomial(int(&value3)[100][2], int num)
+{
+    for (int j = 0; j < num - 1; j++)
+        cout << value3[j][0] << "*x^" << value3[j][1] << "+";
+    cout << value3[num - 1][0] << "*x^" << value3[num - 1][1] << endl;
+}
+void getpolynomial(int(&value4)[100][2], int& num)
+{
+    cout << "How many terms does the polynomial have?" << endl;
+    cin >> num;
+    cout << "Enter the coefficient and the exponent of the polynomial in the decreasing order: " << endl;
+    for (int j = 0; j < num; j++)
+        cin >> value4[j][0] >> value4[j][1];
+}
+int main()
+{
+    int value1[100][2], value2[100][2], value3[1000][2], num1, num2, num3;
+    getpolynomial(value1, num1);
+    printpolynomial(value1, num1);
+    getpolynomial(value2, num2);
+    printpolynomial(value2, num2);
+    num3 = multiplying(value1,value2, value3, num1, num2);
+    cout << " The multiplication of two polynomials is : " << endl;
+    for (int j = 0; j < num3 - 1; j++)
+        cout << value3[j][0] << "*x^" << value3[j][1] << "+";
+    cout << value3[num3 - 1][0] << "*x^" << value3[num3 - 1][1] << endl;
+    return 0;
+}
