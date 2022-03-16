@@ -185,6 +185,19 @@ public:
 		}
 		return result;
 	}
+	
+	
+	//Precondition: when user is asked to enter constant
+	//Postconditon: Multiples constant by polynomial
+
+	friend Polynomial operator*(int x, const Polynomial& p) {
+		Polynomial result;
+		Terms* terms_p;
+		for (terms_p = p.term; terms_p != nullptr; terms_p = terms_p->next) {
+			result.addTerm(terms_p->exponent, terms_p->coefficient * x);
+		}
+		return result;
+	}
 
 	//Precondition: takes data from user input
 	//Postconditon: puts user data into polynomial form
@@ -272,4 +285,12 @@ int main()
 	
 
 	int constantvalue = inputInteger("\nEnter a constant value:  ", 1, 100);
+	
+	
+	Polynomial PolyconstantOne = constantvalue * PolynomialOne;
+	Polynomial PolyconstantTwo = constantvalue * PolynomialTwo;
+	
+
+	cout << "\nPoly One times constant: " << PolyconstantOne;
+	cout << "\nPoly Two times constant: " << PolyconstantTwo << "\n";
 }
