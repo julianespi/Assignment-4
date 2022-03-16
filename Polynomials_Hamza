@@ -271,5 +271,5 @@ int main()
 	cout << "\nMultiplication: " << PolynomialOne * PolynomialTwo << "\n";
 	
 
-	
+	int constantvalue = inputInteger("\nEnter a constant value:  ", 1, 100);
 }
