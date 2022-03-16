@@ -144,19 +144,7 @@ public:
 		}
 	}
 
-//Precondition:NA
-	//PostCondition: Evaluating the polynomials
 
-	double evaluate(double x) {
-		double sum = 0;
-		double value;
-		Terms* p;
-		for (p = term; p != nullptr; p = p->next) {
-			value = pow(x, p->exponent);
-			sum += (p->coefficient * value);
-		}
-		return sum;
-	}
 
 	//Precondition: displaying the addition operater
 	//Postcondition: adds first and second polynomial
