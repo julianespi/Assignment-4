@@ -4,6 +4,8 @@
 using namespace std;
 
 
+//PreCondition: NA
+//PostCondition: Class function of Polynomial
 
 class Polynomial {
 protected:
