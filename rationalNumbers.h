@@ -45,10 +45,12 @@ void normalizeRationalNumber(int& numerator, int& denominator)
     Rational temp;
     temp.setNumerator(numerator);
     temp.setDenominator(denominator);
+    cout << "Numerator: " << temp.getNumerator() << endl;
+    cout << "Denominator: " << temp.getDenominator() << endl;
     temp.normalize();
-    cout << "Numerator: " << numerator << endl;
-    cout << "Denominator: " << denominator << endl;
-    cout << numerator << " / " << denominator;
+    cout << temp.getNumerator() << " / " << temp.getDenominator();
+    numerator = temp.getNumerator();
+    denominator = temp.getDenominator();
 }
 
 void negateRationalNumber(int& numerator, int& denominator)
@@ -66,8 +68,8 @@ void addConstantRational(int& numerator, int& denominator)
     temp.setDenominator(denominator);
     int constantRat = inputInteger("Input an integer value: ");
     cout << "(" << numerator << "/" << denominator << ") + " << constantRat << " = ";
-    numerator = +(constantRat, numerator);
-    cout << numerator << "/" << denominator << endl;
+    temp = constantRat + temp;
+    cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
 void subtractConstantRational(int& numerator, int& denominator)
@@ -77,8 +79,8 @@ void subtractConstantRational(int& numerator, int& denominator)
     temp.setDenominator(denominator);
     int constantRat = inputInteger("Input an integer value: ");
     cout << "(" << numerator << "/" << denominator << ") - " << constantRat << " = ";
-    numerator = -(constantRat, numerator);
-    cout << numerator << "/" << denominator << endl;
+    temp = constantRat - temp;
+    cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
 void multiplyConstantRational(int& numerator, int& denominator)
@@ -88,18 +90,25 @@ void multiplyConstantRational(int& numerator, int& denominator)
     temp.setDenominator(denominator);
     int constantRat = inputInteger("Input an integer value: ");
     cout << "(" << numerator << "/" << denominator << ") * " << constantRat << " = ";
-    numerator = 1*(numerator, constantRat);
-    cout << numerator << "/" << denominator << endl;
+    temp = constantRat * temp;
+    cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
 void divideConstantRational(int& numerator, int& denominator)
 {
-
+    Rational temp;
+    temp.setNumerator(numerator);
+    temp.setDenominator(denominator);
+    int constantRat = inputInteger("Input an integer value: ");
+    cout << "(" << numerator << "/" << denominator << ") / " << constantRat << " = ";
+    temp = constantRat / temp;
+    cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
+int numerator;
+int denominator;
 void singleRationalNumber()
 {
-        int numerator, denominator;
     do
     {
         switch (singleRationalNumberMenuOption())
@@ -107,13 +116,13 @@ void singleRationalNumber()
         case 0: return; break;
         case 1: inputNumerator(numerator); break;
         case 2: inputDenominator(denominator); break;
-        case 3: displayRationalNumber(numerator,denominator); break;
-        case 4: normalizeRationalNumber(); break;
-        case 5: negateRationalNumber(); break;
-        case 6: addConstantRational(); break;
-        case 7: subtractConstantRational(); break;
-        case 8: multiplyConstantRational(); break;
-        case 9: divideConstantRational(); break;
+        case 3: displayRationalNumber(numerator, denominator); break;
+        case 4: normalizeRationalNumber(numerator, denominator); break;
+        case 5: negateRationalNumber(numerator, denominator); break;
+        case 6: addConstantRational(numerator, denominator); break;
+        case 7: subtractConstantRational(numerator, denominator); break;
+        case 8: multiplyConstantRational(numerator, denominator); break;
+        case 9: divideConstantRational(numerator, denominator); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
