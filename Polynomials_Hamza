@@ -88,6 +88,9 @@ public:
 		return *this;
 	}
 	
+	//Precondition: takes data from user input and calculates
+	//PostCondition: displays the Derivative of polynomial
+	
 	void derive(const Polynomial& p) {
 	
 		Terms* q;
@@ -106,6 +109,31 @@ public:
 				terms->exponent = q->exponent;
 				terms->coefficient = q->coefficient * terms->exponent; 
 				terms->exponent = q->exponent-1;
+			}
+			if (q->next != nullptr) {
+				terms->next = new Terms(0, 0, nullptr);
+				terms = terms->next;
+			}
+		}
+	}
+	
+	//Precondition: takes data from user input and calculates
+	//PostCondition: displays the integral of polynomial
+	
+	void intergrate(const Polynomial& p) {
+	Terms* q;
+		Terms* terms = nullptr;
+		bool flag = true;
+		for (q = p.term; q != nullptr; q = q->next) {
+			if (flag) {
+				flag = false;
+				terms = new Terms(q->exponent + 1, q->coefficient / q->exponent, nullptr);
+				term = terms;
+			}
+			else {
+				terms->exponent = q->exponent;
+				terms->coefficient = q->coefficient / terms->exponent;
+				terms->exponent = q->exponent + 1;
 			}
 			if (q->next != nullptr) {
 				terms->next = new Terms(0, 0, nullptr);
