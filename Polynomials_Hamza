@@ -121,19 +121,33 @@ public:
 	//PostCondition: displays the integral of polynomial
 	
 	void intergrate(const Polynomial& p) {
-	Terms* q;
+		Terms* q;
 		Terms* terms = nullptr;
 		bool flag = true;
 		for (q = p.term; q != nullptr; q = q->next) {
 			if (flag) {
 				flag = false;
+				if(q->exponent==0)
+					terms = new Terms(q->exponent + 1, q->coefficient / 1, nullptr);
+				else
 				terms = new Terms(q->exponent + 1, q->coefficient / q->exponent, nullptr);
 				term = terms;
 			}
 			else {
-				terms->exponent = q->exponent;
-				terms->coefficient = q->coefficient / terms->exponent;
-				terms->exponent = q->exponent + 1;
+
+				if (q->exponent == 0)
+				{
+					terms->exponent = 1;
+					terms->coefficient = q->coefficient / terms->exponent;
+				}
+				else
+				{
+					terms->exponent = q->exponent + 1;
+					terms->coefficient = q->coefficient / terms->exponent;
+				}
+
+
+
 			}
 			if (q->next != nullptr) {
 				terms->next = new Terms(0, 0, nullptr);
@@ -141,7 +155,6 @@ public:
 			}
 		}
 	}
-	
 	//Precondition: takes data form user input 
 	//PostCondition: sets exponent and coefficient 
 	void addTerm(int exponent, int coefficient) {
