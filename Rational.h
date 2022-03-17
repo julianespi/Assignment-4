@@ -46,7 +46,7 @@ class Rational
 		friend Rational operator /(const int i, const Rational& R1);
 };
 
-/*int Rational::gcd(int x, int y) {
+int Rational::gcd(int x, int y) {
 	if (y == 0)
 	return x;
 	return gcd(y, x % y);
@@ -81,8 +81,24 @@ void Rational::setDenominator(int d)
 void Rational::normalize()
 {
 	norm = gcd(numerator, denominator);
-	numerator = numerator / norm;
-	denominator = denominator / norm;
+	if (numerator != 0)
+	{
+		numerator = numerator / norm;
+	}
+	if (denominator != 0)
+	{
+		denominator = denominator / norm;
+	}
+	if (numerator < 0 && denominator << 0)
+	{
+		numerator = -numerator;
+		denominator = -denominator;
+	}
+	if (numerator == denominator)
+	{
+		numerator = 1;
+		denominator = 1;
+	}
 }
 
 bool operator !=(const Rational& R1, const Rational& R2)
@@ -306,4 +322,4 @@ Rational::Rational(const Rational& R)
 {
 	numerator = R.numerator;
 	denominator = R.denominator;
-}*/
+}
