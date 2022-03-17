@@ -17,27 +17,30 @@ int singlePolynomialMenuOption()
     return options;
 }
 
-void inputpolynomial()
+void inputTerms(int &TermNumberOne)
 {
-int NumberOfTerms = inputInteger("Enter the number of terms you would like: ", 1, 100);
+	TermNumberOne = inputInteger("\nEnter number of terms for the the polynomial: ", 1, 100);
 }
 
-void changeCoefficients()
+void SpecifyCoefficients(Polynomial onlyPolynomial, int &TermNumberOne)
 {
-for (int i = 1; i <= NumberOfTerms; i++) {
+
+	for (int i = 1; i <= TermNumberOne; i++) {
+		//int TermsOne;
 
 		int TermsOne = inputInteger("Add coeffecient for term: ");
 		int TermOneDegree;
-		TermOneDegree = NumberOfTerms - i;
+		TermOneDegree = TermNumberOne - i;
+		onlyPolynomial.addTerm(TermOneDegree, TermsOne);
 	}
 }
 
-void evaluateExpression()
+void evaluateExpression(Polynomial onlyPolynomial)
 {
 
 }
 
-void Derive()
+void Derive(Polynomial &onlyPolynomial)
 {
 	Polynomial derived;
 	cout << onlyPolynomial << endl;
@@ -45,7 +48,7 @@ void Derive()
 	cout << derived << endl;
 }
 
-void intergrate()
+void intergrate(Polynomial onlyPolynomial)
 {
 
 }
