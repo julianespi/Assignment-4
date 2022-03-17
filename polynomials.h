@@ -22,22 +22,45 @@ void inputTerms(int &TermNumberOne)
 	TermNumberOne = inputInteger("\nEnter number of terms for the the polynomial: ", 1, 100);
 }
 
-void SpecifyCoefficients(Polynomial onlyPolynomial, int &TermNumberOne)
+void SpecifyCoefficients(Polynomial onlyPolynomial, int& TermNumberOne, int& TermOneDegree)
 {
 
-	for (int i = 1; i <= TermNumberOne; i++) {
-		//int TermsOne;
+    for (int i = 1; i <= TermNumberOne; i++) {
+        
 
-		int TermsOne = inputInteger("Add coeffecient for term: ");
-		int TermOneDegree;
-		TermOneDegree = TermNumberOne - i;
-		onlyPolynomial.addTerm(TermOneDegree, TermsOne);
-	}
+        int TermsOne = inputInteger("Add coeffecient for term: ");
+        TermOneDegree = 0;
+        TermOneDegree = TermNumberOne - i;
+        onlyPolynomial.addTerm(TermOneDegree, TermsOne);
+    }
+
+    cout << "\n" << onlyPolynomial;
 }
 
-void evaluateExpression(Polynomial onlyPolynomial)
+void evaluateExpression(Polynomial onlyPolynomial, int& TermNumberOne, int& TermOneDegree)
 {
+    
+    int evaluate = inputInteger("Enter an X value: ");
+   
+    int evaluation = 0;
 
+    
+
+    for (int i = 1; i <= TermNumberOne; i++) {
+        TermOneDegree = 1;
+        TermOneDegree = TermNumberOne - i;
+        evaluation = (evaluate * TermOneDegree) * TermNumberOne;
+        for (int i = 1; i <= TermNumberOne; i++) {
+
+            TermNumberOne = 1;
+            TermOneDegree = TermNumberOne - i;
+
+
+            
+        }
+
+        cout << evaluation << endl;
+    }
 }
 
 void Derive(Polynomial &onlyPolynomial)
@@ -58,20 +81,23 @@ void intergrate(Polynomial onlyPolynomial)
 
 void singlePolynomial()
 {
-    do
-    {
-        switch (singlePolynomialMenuOption())
+   int TermNumberOne;
+        int TermOneDegree;
+        Polynomial onlyPolynomial;
+        do
         {
-        case 0: return; break;
-        case 1: inputTerms(TermNumberOne); break;
-        case 2: SpecifyCoefficients(onlyPolynomial, TermNumberOne); break;
-        case 3: evaluateExpression(onlyPolynomial); break;
-        case 4: Derive(onlyPolynomial); break;
-        case 5: intergrate(onlyPolynomial); break;
-        default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
-        }
-        cout << "\n";
-        system("pause");
+            switch (SinglePolynomialMenuOption())
+            {
+            case 0: return; break;
+            case 1: inputTerms(TermNumberOne); break;
+            case 2: SpecifyCoefficients(onlyPolynomial, TermNumberOne, TermOneDegree); break;
+            case 3: evaluateExpression(onlyPolynomial, TermNumberOne, TermOneDegree); break;
+            case 4: Derive(onlyPolynomial); break;
+            case 5: intergrate(onlyPolynomial); break;
+            default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
+            }
+            cout << "\n";
+            system("pause");
 
     } while (true);
 }
