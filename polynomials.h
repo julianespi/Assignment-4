@@ -50,7 +50,10 @@ void Derive(Polynomial &onlyPolynomial)
 
 void intergrate(Polynomial onlyPolynomial)
 {
-
+    Polynomial Integrated;
+    cout << onlyPolynomial << endl;
+    Integrated.intergrate(onlyPolynomial);
+    cout << Integrated << endl;
 }
 
 void singlePolynomial()
