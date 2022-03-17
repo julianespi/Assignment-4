@@ -17,10 +17,16 @@ int singlePolynomialMenuOption()
     return options;
 }
 
+//PreCondition: NA
+//PostCondition: User input terms for Polynomial
+
 void inputTerms(int &TermNumberOne)
 {
 	TermNumberOne = inputInteger("\nEnter number of terms for the the polynomial: ", 1, 100);
 }
+
+//PreCondition: adding coefficients from Number of terms based on user
+//PostCondition: places a coefficient based on input
 
 void SpecifyCoefficients(Polynomial onlyPolynomial, int& TermNumberOne, int& TermOneDegree)
 {
@@ -37,32 +43,31 @@ void SpecifyCoefficients(Polynomial onlyPolynomial, int& TermNumberOne, int& Ter
     cout << "\n" << onlyPolynomial;
 }
 
+//PreCondition: User inputs a value to solve
+//PostCondition: Solves the polynomial by evaluating by substitution
+
 void evaluateExpression(Polynomial onlyPolynomial, int& TermNumberOne, int& TermOneDegree)
 {
     
     int evaluate = inputInteger("Enter an X value: ");
-   
-    int evaluation = 0;
 
+    int evaluation = 0;
+    
     
 
-    for (int i = 1; i <= TermNumberOne; i++) {
-        TermOneDegree = 1;
+    for (int i = 1; i <= TermNumberOne; i++) {     
+        TermOneDegree = 0;
         TermOneDegree = TermNumberOne - i;
-        evaluation = (evaluate * TermOneDegree) * TermNumberOne;
-        for (int i = 1; i <= TermNumberOne; i++) {
-
-            TermNumberOne = 1;
-            TermOneDegree = TermNumberOne - i;
-
-
-            
-        }
-
+        evaluation =  pow(evaluate, TermOneDegree);
+        
+      
         cout << evaluation << endl;
+        
     }
 }
 
+//PreCondition: reads from user input polynomial
+//PostCondition: Calculates derivative of function
 void Derive(Polynomial &onlyPolynomial)
 {
 	Polynomial derived;
@@ -70,7 +75,8 @@ void Derive(Polynomial &onlyPolynomial)
 	derived.derive(onlyPolynomial);
 	cout << derived << endl;
 }
-
+//PreCondition: reads from user input polynomial
+//PostCondition: Calculates integral of function
 void intergrate(Polynomial onlyPolynomial)
 {
     Polynomial Integrated;
@@ -78,7 +84,8 @@ void intergrate(Polynomial onlyPolynomial)
     Integrated.intergrate(onlyPolynomial);
     cout << Integrated << endl;
 }
-
+//PreCondition: user option from menu option
+//PostCondition: takes user to desired option
 void singlePolynomial()
 {
    int TermNumberOne;
