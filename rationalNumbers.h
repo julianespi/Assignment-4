@@ -99,14 +99,15 @@ void divideConstantRational(int& numerator, int& denominator)
 
 void singleRationalNumber()
 {
+        int numerator, denominator;
     do
     {
         switch (singleRationalNumberMenuOption())
         {
         case 0: return; break;
-        case 1: inputNumerator(); break;
-        case 2: inputDenominator(); break;
-        case 3: displayRationalNumber(); break;
+        case 1: inputNumerator(numerator); break;
+        case 2: inputDenominator(denominator); break;
+        case 3: displayRationalNumber(numerator,denominator); break;
         case 4: normalizeRationalNumber(); break;
         case 5: negateRationalNumber(); break;
         case 6: addConstantRational(); break;
