@@ -60,11 +60,11 @@ void singlePolynomial()
         switch (singlePolynomialMenuOption())
         {
         case 0: return; break;
-        case 1: inputpolynomial(); break;
-        case 2: changeCoefficients(); break;
-        case 3: evaluateExpression(); break;
-        case 4: Derive(); break;
-        case 5: intergrate(); break;
+        case 1: inputTerms(TermNumberOne); break;
+        case 2: SpecifyCoefficients(onlyPolynomial, TermNumberOne); break;
+        case 3: evaluateExpression(onlyPolynomial); break;
+        case 4: Derive(onlyPolynomial); break;
+        case 5: intergrate(onlyPolynomial); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
