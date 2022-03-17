@@ -2,6 +2,8 @@
 #include "input.h"
 #include "Rational.h"
 
+//precondition: none
+//postcondition: displays menu for single rational number
 int singleRationalNumberMenuOption()
 {
     cout << endl << "A Rational Number";
@@ -23,16 +25,22 @@ int singleRationalNumberMenuOption()
     return options;
 }
 
+//precondition: empty value for numerator
+//postcondition: get numerator value
 void inputNumerator(int& numerator)
 {
     numerator = inputInteger("Input a numerator: ");
 }
 
+//precondition: empty value for denominator
+//postcondition: get denominator value
 void inputDenominator(int& denominator)
 {
     denominator = inputInteger("Input a denominator: ");
 }
 
+//precondition: one rational number
+//postcondition: displays rational number
 void displayRationalNumber(const int numerator, const int denominator)
 {
     cout << "Numerator: " << numerator << endl;
@@ -40,6 +48,8 @@ void displayRationalNumber(const int numerator, const int denominator)
     cout << numerator << " / " << denominator;
 }
 
+//precondition: one rational number
+//postcondition: normalizes rational number
 void normalizeRationalNumber(int& numerator, int& denominator)
 {
     Rational temp;
@@ -53,6 +63,8 @@ void normalizeRationalNumber(int& numerator, int& denominator)
     denominator = temp.getDenominator();
 }
 
+//precondition: one rational number
+//postcondition: negates rational number
 void negateRationalNumber(int& numerator, int& denominator)
 {
     cout << "-(" << numerator << "/" << denominator << ") = ";
@@ -61,6 +73,8 @@ void negateRationalNumber(int& numerator, int& denominator)
     cout << numerator << "/" << denominator << endl;
 }
 
+//precondition: one rational number
+//postcondition: evaluates rational number against an integer through addition
 void addConstantRational(int& numerator, int& denominator)
 {
     Rational temp;
@@ -72,6 +86,8 @@ void addConstantRational(int& numerator, int& denominator)
     cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
+//precondition: one rational number
+//postcondition: evaluates rational number against an integer through subtraction
 void subtractConstantRational(int& numerator, int& denominator)
 {
     Rational temp;
@@ -83,6 +99,8 @@ void subtractConstantRational(int& numerator, int& denominator)
     cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
+//precondition: one rational number
+//postcondition: evaluates rational number against an integer through multiplication
 void multiplyConstantRational(int& numerator, int& denominator)
 {
     Rational temp;
@@ -94,6 +112,8 @@ void multiplyConstantRational(int& numerator, int& denominator)
     cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
+//precondition: one rational number
+//postcondition: evaluates rational number against an integer through division
 void divideConstantRational(int& numerator, int& denominator)
 {
     Rational temp;
@@ -105,6 +125,8 @@ void divideConstantRational(int& numerator, int& denominator)
     cout << temp.getNumerator() << "/" << temp.getDenominator() << endl;
 }
 
+//precondition: none
+//postcondition: chooses menu for single rational number
 int numerator;
 int denominator;
 void singleRationalNumber()
@@ -131,6 +153,8 @@ void singleRationalNumber()
     } while (true);
 }
 
+//precondition: none
+//postcondition: displays menu for multiple rational numbers
 int  mutlipleRationalNumbersMenuOption()
 {
     cout << endl << "Multiple Rational Numbers";
@@ -148,26 +172,155 @@ int  mutlipleRationalNumbersMenuOption()
     return options;
 }
 
-void inputRational()
+//precondition: empty rational value
+//postcondition: get rational value
+void inputRational(Rational& R1)
 {
-
+    cin >> R1;
+    cout << "R1 = ";
+    cout << R1 << endl;
 }
 
-void verifyCondition()
+//precondition: empty rational value
+//postcondition: get rational value
+void inputRational_2(Rational& R2)
 {
-
+    cin >> R2;
+    cout << "R2 = ";
+    cout << R2 << endl;
 }
 
-void evaulateArithmatic()
+//precondition: two rational numbers
+//postcondition: evaluates two rational numbers against each other
+void verifyCondition(Rational& R1, Rational& R2)
 {
-
+    int truth = (R1 == R2);
+    if (truth == 1)
+    {
+        cout << "R1 == R2 -> (" << R1 << ") == (" << R2 << ") ? true" << endl;
+    }
+    else if (truth == 0)
+    {
+        cout << "R1 == R2 -> (" << R1 << ") == (" << R2 << ") ? false" << endl;
+    }
+    truth = 2; //always here in between bools to prevent boolean error
+    truth = (R1 != R2);
+    if (truth == 1)
+    {
+        cout << "R1 != R2 -> (" << R1 << ") != (" << R2 << ") ? true" << endl;
+    }
+    else if (truth == 0)
+    {
+        cout << "R1 != R2 -> (" << R1 << ") != (" << R2 << ") ? false" << endl;
+    }
+    truth = 2; //always here in between bools to prevent boolean error
+    truth = (R1 >= R2);
+    if (truth == 1)
+    {
+        cout << "R1 >= R2 -> (" << R1 << ") >= (" << R2 << ") ? true" << endl;
+    }
+    else if (truth == 0)
+    {
+        cout << "R1 >= R2 -> (" << R1 << ") >= (" << R2 << ") ? false" << endl;
+    }
+    truth = 2; //always here in between bools to prevent boolean error
+    truth = (R1 > R2);
+    if (truth == 1)
+    {
+        cout << "R1  > R2 -> (" << R1 << ")  > (" << R2 << ") ? true" << endl;
+    }
+    else if (truth == 0)
+    {
+        cout << "R1  > R2 -> (" << R1 << ")  > (" << R2 << ") ? false" << endl;
+    }
+    truth = 2; //always here in between bools to prevent boolean error
+    truth = (R1 != R2);
+    if (truth <= 1)
+    {
+        cout << "R1 <= R2 -> (" << R1 << ") <= (" << R2 << ") ? true" << endl;
+    }
+    else if (truth == 0)
+    {
+        cout << "R1 <= R2 -> (" << R1 << ") <= (" << R2 << ") ? false" << endl;
+    }
+    truth = 2; //always here in between bools to prevent boolean error
+    truth = (R1 < R2);
+    if (truth == 1)
+    {
+        cout << "R1  < R2 -> (" << R1 << ")  < (" << R2 << ") ? true" << endl;
+    }
+    else if (truth == 0)
+    {
+        cout << "R1  < R2 -> (" << R1 << ")  < (" << R2 << ") ? false" << endl;
+    }
 }
 
-void evaluateRationalNumber()
+//precondition: two rational numbers
+//postcondition: evaluates two rational numbers against each other through arithmatic
+void evaulateArithmatic(Rational& R1, Rational& R2)
 {
-
+    Rational temp;
+    temp = R1 + R2;
+    cout << "Addition      : R1 + R2 -> (" << R1 << ") + (" << R2 << ") = " << temp << endl;
+    temp = R1 - R2;
+    cout << "Subtraction   : R1 - R2 -> (" << R1 << ") - (" << R2 << ") = " << temp << endl;
+    temp = R1 * R2;
+    cout << "Multiplication: R1 * R2 -> (" << R1 << ") * (" << R2 << ") = " << temp << endl;
+    if (R1.getNumerator() == 0 && R2.getNumerator() == 0)
+    {
+        cout << "Division      : R1 / R2 -> (" << R1 << ") / (" << R2 << ") = 0/0" << endl;
+    }
+    else
+    {
+        temp = R1 / R2;
+        cout << "Division      : R1 / R2 -> (" << R1 << ") / (" << R2 << ") = " << temp << endl;
+    }
 }
 
+//precondition: two rational numbers
+//postcondition: evaluates two rational numbers against 621/889
+void evaluateRationalNumber(Rational& R1, Rational& R2)
+{
+    int truth;
+    Rational tempf;
+    Rational temp;
+    Rational temp_2;
+    cout << "R1 = " << R1 << endl;
+    cout << "R2 = " << R2 << endl;
+    cout << "R3 = " << Rational(621, 889) << endl << endl;
+    cout << "Evaluation Expression..." << endl;
+    temp = R1 + R2;
+    temp_2 = R2 - R1;
+    tempf = ((3 * temp) / 7) / (temp_2 / 9);
+    truth = tempf >= Rational(621, 889);
+    cout << "         (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889 ?" << endl;
+    cout << "Step #1: (3 * (" << temp << ") / 7) / (" << temp_2 << " / 9) >= 621/889 ?" << endl;
+    temp = 3 * temp;
+    temp_2 = temp_2 / 9;
+    cout << "Step #2: (" << temp << " / 7) / (" << temp_2 << ") >= 621/889 ?" << endl;
+    cout << "Step #3: (" << temp << ") / (" << temp_2 << ") >= 621/889 ?" << endl;
+    if (temp.getNumerator() == 0 && temp_2.getNumerator() == 0)
+    {
+        cout << "Step #4: (0/0) >= 621/889 ?" << endl;
+    }
+    else
+    {
+        cout << "Step #4: (" << tempf << ") >= 621/889 ?" << endl;
+    }
+    if (truth == 1)
+    {
+        cout << "Step #5: true" << endl;
+    }
+    else if (truth == 0)
+    {
+        cout << "Step #5: false" << endl;
+    }
+}
+
+//precondition: none
+//postcondition: chooses menu for multiple rational numbers
+Rational(R1);
+Rational(R2);
 void mutlipleRationalNumbers()
 {
     do
@@ -175,11 +328,11 @@ void mutlipleRationalNumbers()
         switch (mutlipleRationalNumbersMenuOption())
         {
         case 0: return; break;
-        case 1: inputRational(); break;
-        case 2: inputRational(); break;
-        case 3: verifyCondition(); break;
-        case 4: evaulateArithmatic(); break;
-        case 5: evaluateRationalNumber(); break;
+        case 1: inputRational(R1); break;
+        case 2: inputRational_2(R2); break;
+        case 3: verifyCondition(R1, R2); break;
+        case 4: evaulateArithmatic(R1, R2); break;
+        case 5: evaluateRationalNumber(R1, R2); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
