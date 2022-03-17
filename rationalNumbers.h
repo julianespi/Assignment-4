@@ -1,4 +1,6 @@
 #pragma once
+#include "input.h"
+#include "Rational.h"
 
 int singleRationalNumberMenuOption()
 {
@@ -21,47 +23,76 @@ int singleRationalNumberMenuOption()
     return options;
 }
 
-void inputNumerator()
+void inputNumerator(int& numerator)
 {
-
+    numerator = inputInteger("Input a numerator: ");
 }
 
-void inputDenominator()
+void inputDenominator(int& denominator)
 {
-
+    denominator = inputInteger("Input a denominator: ");
 }
 
-void displayRationalNumber()
+void displayRationalNumber(const int numerator, const int denominator)
 {
-
+    cout << "Numerator: " << numerator << endl;
+    cout << "Denominator: " << denominator << endl;
+    cout << numerator << " / " << denominator;
 }
 
-void normalizeRationalNumber()
+void normalizeRationalNumber(int& numerator, int& denominator)
 {
-
+    Rational temp;
+    temp.setNumerator(numerator);
+    temp.setDenominator(denominator);
+    temp.normalize();
+    cout << "Numerator: " << numerator << endl;
+    cout << "Denominator: " << denominator << endl;
+    cout << numerator << " / " << denominator;
 }
 
-void negateRationalNumber()
+void negateRationalNumber(int& numerator, int& denominator)
 {
-
+    cout << "-(" << numerator << "/" << denominator << ") = ";
+    numerator = -numerator;
+    denominator = -denominator;
+    cout << numerator << "/" << denominator << endl;
 }
 
-void addConstantRational()
+void addConstantRational(int& numerator, int& denominator)
 {
-
+    Rational temp;
+    temp.setNumerator(numerator);
+    temp.setDenominator(denominator);
+    int constantRat = inputInteger("Input an integer value: ");
+    cout << "(" << numerator << "/" << denominator << ") + " << constantRat << " = ";
+    numerator = +(constantRat, numerator);
+    cout << numerator << "/" << denominator << endl;
 }
 
-void subtractConstantRational()
+void subtractConstantRational(int& numerator, int& denominator)
 {
-
+    Rational temp;
+    temp.setNumerator(numerator);
+    temp.setDenominator(denominator);
+    int constantRat = inputInteger("Input an integer value: ");
+    cout << "(" << numerator << "/" << denominator << ") - " << constantRat << " = ";
+    numerator = -(constantRat, numerator);
+    cout << numerator << "/" << denominator << endl;
 }
 
-void multiplyConstantRational()
+void multiplyConstantRational(int& numerator, int& denominator)
 {
-
+    Rational temp;
+    temp.setNumerator(numerator);
+    temp.setDenominator(denominator);
+    int constantRat = inputInteger("Input an integer value: ");
+    cout << "(" << numerator << "/" << denominator << ") * " << constantRat << " = ";
+    numerator = 1*(numerator, constantRat);
+    cout << numerator << "/" << denominator << endl;
 }
 
-void divideConstantRational()
+void divideConstantRational(int& numerator, int& denominator)
 {
 
 }
@@ -169,9 +200,9 @@ void rationalNumbers()
     {
         switch (rationalNumbersMenuOption())
         {
-            case 0: return; break;
-            case 1: singleRationalNumber(); break;
-            case 2: mutlipleRationalNumbers(); break;
+        case 0: return; break;
+        case 1: singleRationalNumber(); break;
+        case 2: mutlipleRationalNumbers(); break;
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
